@@ -1,3 +1,9 @@
+# Dev-specific Ignore
+.env
+.excalidraw
+bundle.js
+data_exports
+
 # Logs
 logs
 *.log
