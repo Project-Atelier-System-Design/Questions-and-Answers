@@ -2,6 +2,7 @@
 Server side and Database system creation got Hack Reactors SDC sprint. This repository is one part of the entire system and utilizes other repos.
 
 [Project Atelier System Design Homepage](https://github.com/Project-Atelier-System-Design "Project-Atelier-System-Design")
+
 [Project Atelier System Design Client Repo](https://github.com/Project-Atelier-System-Design/supernova-retail-app "Project-Atelier-System-Design Supernova Retail App")
 
 ## All terminal commands are run in Ubuntu Linux (either WSL or Linux terminal)
