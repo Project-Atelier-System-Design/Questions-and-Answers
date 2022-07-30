@@ -1,6 +1,7 @@
 # Dev-specific Ignore
 .env
 .excalidraw
+package-lock.json
 bundle.js
 data_exports
 
