@@ -83,3 +83,23 @@ SELECT MAX(questions.id) FROM questions;
 SELECT nextval(pg_get_serial_sequence('questions', 'id'));
 
 SELECT setval(pg_get_serial_sequence('questions', 'id'), (SELECT MAX(id) FROM questions)+1);
+
+
+--insert answer with photo(array of urls) --
+
+WITH data(question_id, body, date_written, answerer_name, answerer_email) AS (
+	VALUES
+		(456, 'Theres nothing to see here. V3', NOW(), 'AMW Rootbeer', 'rootbeer@someemail.com')
+),
+ins AS(
+INSERT INTO answers (question_id, body, date_written, answerer_name, answerer_email)
+SELECT question_id, body, date_written, answerer_name, answerer_email
+FROM data
+RETURNING id AS answer_id
+)
+INSERT INTO answers_photos (answer_id, url)
+SELECT ins.answer_id, json_array_elements_text('{"urls":["https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+"https://media.istockphoto.com/photos/mountain-landscape-picture-id517188688?k=20&m=517188688&s=612x612&w=0&h=i38qBm2P-6V4vZVEaMy_TaTEaoCMkYhvLCysE7yJQ5Q="]}'::JSON -> 'urls')
+FROM ins
+RETURNING *
+;
