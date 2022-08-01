@@ -59,31 +59,10 @@ questions.product_id,
 FROM questions
 WHERE questions.product_id = 66646 AND questions.reported = false;
 
-------- POST questions/answers -----------
+------- POST questions -----------
 
 INSERT INTO questions (product_id, body, date_written, asker_name, asker_email)
 VALUES (66646, 'whats even going on here?', NOW(), 'AMW Rootbeer', 'rootbeer@someemail.com');
-
-SELECT * FROM questions WHERE questions.product_id = 66646;
-
-------- PUT questions/answers ------------
-
-UPDATE questions
-SET reported = true
-WHERE questions.id = 5
-
-UPDATE questions
-SET helpful = helpful + 1
-WHERE questions.id = 5;
-
-INSERT INTO questions (product_id, body, date_written, asker_name, asker_email)
-VALUES (66646, 'whats even going on here?', NOW(), 'AMW Rootbeer', 'rootbeer@someemail.com');
-
-SELECT MAX(questions.id) FROM questions;
-SELECT nextval(pg_get_serial_sequence('questions', 'id'));
-
-SELECT setval(pg_get_serial_sequence('questions', 'id'), (SELECT MAX(id) FROM questions)+1);
-
 
 --insert answer with photo(array of urls) --
 
@@ -103,3 +82,13 @@ SELECT ins.answer_id, json_array_elements_text('{"urls":["https://images.unsplas
 FROM ins
 RETURNING *
 ;
+
+------- PUT questions/answers ------------
+
+UPDATE questions
+SET reported = true
+WHERE questions.id = 5
+
+UPDATE questions
+SET helpful = helpful + 1
+WHERE questions.id = 5;
