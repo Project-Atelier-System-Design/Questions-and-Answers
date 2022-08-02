@@ -4,12 +4,23 @@ import { check, sleep } from 'k6';
 // Load, Stress, Spike, Soak - types of tests
 
 export const options = {
-  vus: 10,
-  duration: '30s',
+  // vus: 100,
+  // duration: '30s',
+  stages: [
+    {duration: '30s', target: 100},
+    {duration: '60s', target: 100},
+    {duration: '30s', target: 200},
+    {duration: '60s', target: 200},
+    {duration: '30s', target: 500},
+    {duration: '60s', target: 500},
+    {duration: '30s', target: 1000},
+    {duration: '60s', target: 1000},
+    {duration: '2m', target: 0},
+  ]
 }
 
-const url_get_questions = 'http://127.0.0.1:3000/qa/questions/?product_id=562&page=2&count=10';
-const url_get_answers = 'http://127.0.0.1:3000/qa/999999/answers/';
+const url_get_questions = 'http://127.0.0.1:3000/qa/questions/?product_id=999999&page=2&count=10';
+const url_get_answers = 'http://127.0.0.1:3000/qa/questions/999999/answers/';
 const url_post_question = 'http://127.0.0.1:3000/qa/questions/';
 const url_post_answer = 'http://127.0.0.1:3000/qa/questions/999999/answers';
 const url_put_report_question = 'http://127.0.0.1:3000/qa/questions/999998/report';
@@ -30,13 +41,13 @@ const body_post_answer = {
 };
 
 export default function() {
-  const r1 = http.get(url_get_questions);
-  const r2 = http.get(url_get_answers);
-  const r3 = http.post(url_post_question, body_post_question);
-  const r4 = http.post(url_post_answer, body_post_answer);
-  const r5 = http.put(url_put_report_question);
-  const r6 = http.put(url_put_report_answer);
-  const r7 = http.put(url_put_helpful_question);
+  // const r1 = http.get(url_get_questions);
+  // const r2 = http.get(url_get_answers);
+  // const r3 = http.post(url_post_question, JSON.stringify(body_post_question), {headers: {'Content-Type': 'application/json'}});
+  // const r4 = http.post(url_post_answer, JSON.stringify(body_post_answer), {headers: {'Content-Type': 'application/json'}});
+  // const r5 = http.put(url_put_report_question);
+  // const r6 = http.put(url_put_report_answer);
+  // const r7 = http.put(url_put_helpful_question);
   const r8 = http.put(url_put_helpful_answer);
 
   const get_questions = {
@@ -95,12 +106,12 @@ export default function() {
     'ANSWER_HELPFUL time < 1000ms': r => r.timings.duration < 1000,
     'ANSWER_HELPFUL time < 2000ms': r => r.timings.duration < 2000
   };
-  check(r1, get_questions);
+  // check(r1, get_questions);
   // check(r2, get_answers);
   // check(r3, post_question);
   // check(r4, post_answer);
   // check(r5, put_question_report);
   // check(r6, put_answer_report);
   // check(r7, put_question_helpful);
-  // check(r8, put_answer_helpful);
+  check(r8, put_answer_helpful);
 }

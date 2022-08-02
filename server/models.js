@@ -5,7 +5,7 @@ module.exports = {
   questions: (query) => {
     let count = query.count || 5;
     let page = (count * query.page) || 0;
-    console.log('count: ', count);
+    // console.log('count: ', count);
     let product_id = query.product_id;
     return pool.query(`
       SELECT
@@ -114,7 +114,7 @@ module.exports = {
   },
 
   updateHelpful: (params) => {
-    console.log('params: ', params)
+    // console.log('params: ', params)
     let id = params.id;
     let table = params.table
     return pool.query(`

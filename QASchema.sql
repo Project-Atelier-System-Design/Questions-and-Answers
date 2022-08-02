@@ -63,7 +63,7 @@ SELECT setval(pg_get_serial_sequence('answers_photos', 'id'), (SELECT MAX(id) FR
 
 -- Create indexes for foreign keys --
 
---CREATE INDEX questions_index ON questions ({product_id});--
+CREATE INDEX questions_index ON questions (product_id);
 
 CREATE INDEX answers_index ON answers (question_id);
 

@@ -33,20 +33,21 @@ module.exports = {
   },
 
   postQuestion: function(req, res) {
-    console.log('postQuestion req.body: ', req.body);
+    // console.log('postQuestion req.body: ', req.body);
     Models.insertQuestion(req.body)
       .then(data => res.status(201).send(data.rows))
       .catch(err => res.status(500).send(err.stack))
   },
 
   postAnswer: function(req, res) {
+    console.log('postAnswer req.body: ', req.body);
     Models.insertAnswer(req.body)
       .then(data => res.status(201).send(data.rows))
       .catch(err => res.status(500).send(err.stack))
   },
 
   putQuestionHelpful: function(req, res) {
-    console.log((req.url).split('/')[3]);
+    // console.log((req.url).split('/')[3]);
     const id = req.params.question_id || req.params.answer_id;
     const table = (req.url).split('/')[2];
     const params = {
