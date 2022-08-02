@@ -4,7 +4,7 @@ const cors = require('cors');
 const express = require("express");
 const path = require("path");
 const controllers = require("./controllers.js");
-const compression = require('compression');
+// const compression = require('compression');
 const {pool, questionQuery}=require('./db.js');
 
 //-----------------Server App Instantiation ----------------
@@ -16,7 +16,7 @@ app.use(cors({
   methods: ['GET','POST','PUT']
 }));
 app.use(express.json());
-app.use(compression());
+// app.use(compression());
 app.use(express.static(path.join(__dirname, '../client/public')));
 
 //-----------------Router ----------------------------------
