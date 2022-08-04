@@ -20,6 +20,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '../client/public')));
 
 //-----------------Router ----------------------------------
+app.get('/loaderio-fba12060571afbbe5ce58b4c4e34c5b7.txt', (req, res) => {res.sendFile(path.join(__dirname, '../loaderio-fba12060571afbbe5ce58b4c4e34c5b7.txt'))});
 app.get('/qa/questions', controllers.getQuestions); //verified
 app.get('/qa/questions/:question_id/answers', controllers.getAnswers);
 app.post('/qa/questions', controllers.postQuestion);
