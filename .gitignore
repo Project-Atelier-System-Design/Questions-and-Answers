@@ -1,3 +1,12 @@
+# Dev-specific Ignore
+.env
+.excalidraw
+package-lock.json
+bundle.js
+data_exports
+QA-SDC.pem
+QA-SDC.pem:Zone.Identifier
+
 # Logs
 logs
 *.log
